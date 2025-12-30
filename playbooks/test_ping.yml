@@ -1,0 +1,13 @@
+---
+- name: test ping mikrotik
+  hosts: all
+  gather_facts: no
+  tasks:
+   - name: ping routers
+     community.routeros.command:
+       commands:
+         - /ip address print
+     register: ping_result
+   - name: shoe ping
+     debug:
+       var: ping_result.stdout
